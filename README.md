@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/halfrost/halfrost/master/icons/header_.png)
+![](https://d2ms8rpfqc4h24.cloudfront.net/Advantages_of_Mern_Stack_Development_2e2f408d9a.jpg)
 
 # Basic MERN Stack App
 
