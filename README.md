@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/halfrost/halfrost/master/icons/header_.png)
+
 # Basic MERN Stack App
 
 ### Front-End - React + Boostrap
