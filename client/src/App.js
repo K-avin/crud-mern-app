@@ -1,13 +1,19 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import CreateMovies from './components/CreateMovies'
-import ListMovies from './components/ListMovies'
-import EditMovies from './components/EditMovies'
+import CreateMovies from './pages/admin/CreateMovies';
+import ListMovies from './pages/admin/ListMovies';
+import GithubCommit from './pages/admin/githubCommit';
+import EditMovies from './pages/admin/EditMovies';
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Cards from "./pages/Cards";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,11 +35,20 @@ function App() {
               </Navbar.Brand>
               <Nav className="justify-content-end">
                 <Nav>
+                {/* <Link to={'/git'} className="nav-link">
+                    Git
+                  </Link> */}
                   <Link to={'/list-movies'} className="nav-link">
                     Movies
                   </Link>
                   <Link to={'/create-movie'} className="nav-link">
                     Create
+                  </Link>
+                  <Link to={'/login'} className="nav-link">
+                    Login
+                  </Link>
+                  <Link to={'/register'} className="nav-link">
+                    Register
                   </Link>
                 </Nav>
               </Nav>
@@ -47,7 +62,18 @@ function App() {
                     <Route
                       exact
                       path="/"
-                      component={ListMovies}
+                      component={Cards}
+
+                    />
+                    <Route
+                      exact
+                      path="/register"
+                      component={Register}
+                    />
+                    <Route
+                      exact
+                      path="/login"
+                      component={Login}
                     />
                     <Route
                       exact
@@ -63,6 +89,11 @@ function App() {
                       exact
                       path="/list-movies"
                       component={ListMovies}
+                    />
+                    <Route
+                      exact
+                      path="/git"
+                      component={GithubCommit}
                     />
                   </Switch>
                 </div>
