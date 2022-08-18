@@ -1,4 +1,5 @@
 const Movies = require("../models/movieModel");
+const jwt = require('jsonwebtoken');
 
 const handleErrors = (err) => {
     let errors = {
@@ -56,13 +57,21 @@ module.exports.createMovies = async (req, res, next) => {
 
 // list movies data
 module.exports.listMovies = async (req, res, next) => {
-    Movies.find((error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
+    // const bearerHeader = req.headers['authorization'];
+    // if (typeof bearerHeader !== 'undefined') {
+        // jwt.verify(req.token, 'secretkey', (err) => {
+            Movies.find((error, data) => {
+                if (error) {
+                    return next(error)
+                } else {
+                    res.json(data)
+                }
+            })
+        // });
+    // } else {
+        // Forbidden
+        // res.sendStatus(403);
+    // }
 };
 
 

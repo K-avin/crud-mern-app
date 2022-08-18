@@ -1,6 +1,5 @@
 const { createMovies, listMovies, deleteMovie } = require("../controllers/movieController");
-const { checkUser } = require("../middlewares/authMiddleware");
-
+const { checkUser, verifyToken } = require("../middlewares/authMiddleware");
 const router = require("express").Router();
 
 // list movies data

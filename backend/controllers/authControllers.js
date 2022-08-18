@@ -60,7 +60,14 @@ module.exports.login = async (req, res) => {
     const user = await User.login(email, password);
     const token = createToken(user._id);
     res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 });
-    res.status(200).json({ user: user._id, status: true });
+    jwt.sign({user}, 'secretkey', { expiresIn: '30s' }, (err, token) => {
+    res.status(200).json({ user: user._id, status: true, token});
+  });
+  //   jwt.sign({user}, 'secretkey', { expiresIn: '30s' }, (err, token) => {
+  //   res.json({
+  //     token
+  //   });
+  // });
   } catch (err) {
     const errors = handleErrors(err);
     res.json({ errors, status: false });

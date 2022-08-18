@@ -10,6 +10,7 @@ export default class MoviesTable extends Component {
         )
         .then((res) => {
             console.log('Movie Data Successfully deleted')
+            
         })
         .catch((error)=>{
             console.log(error)
@@ -30,11 +31,11 @@ export default class MoviesTable extends Component {
                 >
                 Edit
                 </Link>
-                <Link className="delete-link" onClick={this.deleteMoviedata}
-                to={''}
+                <a className="delete-link" onClick={this.deleteMoviedata}
+                href={'/list-movies'}
                 >
                 Delete
-                </Link>
+                </a>
                 </td>
             </tr>
         )

@@ -2,35 +2,35 @@ import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { token, user, baseUrl } from "../../constants/constants";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+
+console.log(token)
+console.log(user)
 
 function CreateMovies() {
     const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
     const navigate = useHistory();
     const [isLoading, setIsLoading] = useState(true);
-    const [isAuth, setAuth] = useState(true);
+    // const [isAuth, setAuth] = useState(true);
     const [content, setContent] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/mflix')
-            // .then(res => res.json())
-            .then(res => { setContent(res.data); console.log(res.data); })
-            .catch(err => console.log(err));
 
+    useEffect(() => {
         const verifyUser = async () => {
             if (!cookies.jwt) {
                 navigate.push("/login");
             } else {
                 const { data } = await axios.post(
-                    "http://localhost:8000",
+                    baseUrl,
                     {},
                     {
                         withCredentials: true,
                     }
                 );
-                setAuth(content.status = true); console.log(data);
+                // setAuth(content.status = true); console.log(data);
                 if (!data.status) {
                     removeCookie("jwt");
                     navigate.push("/login");
@@ -71,7 +71,7 @@ function CreateMovies() {
         event.preventDefault();
         try {
             const { data } = await axios.post(
-                "http://localhost:8000/mflix/create-movie",
+                baseUrl + "/mflix/create-movie",
                 {
                     ...values,
                 },
@@ -95,7 +95,7 @@ function CreateMovies() {
     };
     return (
         <>
-        {/* <div>
+            {/* <div>
             {!isAuth ? (
                 <h1>Loading...</h1>
             ) : (

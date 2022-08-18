@@ -2,6 +2,7 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table'
 import React, { Component } from 'react';
 import MoviesTable from './MoviesTable'
+import { token, user, baseUrl } from "../../constants/constants";
 
 export default class ListMovies extends Component {
 
@@ -13,18 +14,29 @@ export default class ListMovies extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/mflix')
 
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    moviesdatalist: res.data
-                    
-                });
+        // if (token === null) {
+        //     const headers = null;
+        // }
+        // else if(token === user.token){
+            
+        //     const headers = { Authorization: `Bearer ${token}` };
+
+            axios.get(baseUrl + '/mflix', {
+                // headers: headers
             })
-            .catch((error) => {
-                console.log(error)
-            })
+
+                .then(res => {
+                    console.log(res.data)
+                    this.setState({
+                        moviesdatalist: res.data
+
+                    });
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        // }return console.log('Unauthorized token')
     }
 
     DataTable() {

@@ -119,6 +119,9 @@ function Login() {
           if (email) generateError(email);
           else if (password) generateError(password);
         } else {
+          const token = data.token;
+          localStorage.setItem('token', token);
+          localStorage.setItem('user', JSON.stringify(data));
           navigate.push("/");
         }
       }
@@ -129,35 +132,35 @@ function Login() {
   return (
     <div className="form-auth">
       <div className="card">
-      <h2>Login to your Account</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter the email"
-            onChange={(e) =>
-              setValues({ ...values, [e.target.name]: e.target.value })
-            }
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder="Enter the password"
-            name="password"
-            onChange={(e) =>
-              setValues({ ...values, [e.target.name]: e.target.value })
-            }
-          />
-        </div>
-        <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
-        <span className="forgot-password text-right">
-          Don't have an account ?<Link to="/register"> Register </Link>
-        </span>
-      </form>
+        <h2>Login to your Account</h2>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter the email"
+              onChange={(e) =>
+                setValues({ ...values, [e.target.name]: e.target.value })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Enter the password"
+              name="password"
+              onChange={(e) =>
+                setValues({ ...values, [e.target.name]: e.target.value })
+              }
+            />
+          </div>
+          <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
+          <span className="forgot-password text-right">
+            Don't have an account ?<Link to="/register"> Register </Link>
+          </span>
+        </form>
       </div>
       <ToastContainer />
     </div>

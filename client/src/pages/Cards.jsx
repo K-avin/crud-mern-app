@@ -33,6 +33,7 @@ export default function Cards() {
   }, [cookies, navigate, removeCookie]);
 
   const logOut = () => {
+    localStorage.clear()
     removeCookie("jwt");
     navigate.push("/login");
   };
